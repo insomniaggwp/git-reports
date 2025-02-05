@@ -20,11 +20,14 @@ def get_all_repos():
     except Exception as e:
         print(f"Error fetching repositories: {e}")
 
-def get_all_commits(owner, repo_name, author_email=None):
+def get_all_commits(owner, repo_name, branch=None, author_email=None):
     """ Fetch and print all commits in the specified repository. """
     try:
         repo = g.get_repo(f"{owner}/{repo_name}")
-        commits = repo.get_commits()
+        # Set default branch if None
+        if branch is None:
+            branch = repo.default_branch  # Automatically get the repo's default branch
+        commits = repo.get_commits(sha=branch)
 
         for commit in commits:
             author = commit.commit.author
@@ -47,6 +50,7 @@ def main():
     
     parser.add_argument("--owner", help="GitHub repository owner")
     parser.add_argument("--repo", help="Repository name")
+    parser.add_argument("--branch", help="Select branch default main")
     parser.add_argument("--author", help="Filter based on author email")
 
     args = parser.parse_args()
@@ -57,7 +61,7 @@ def main():
         if not args.owner or not args.repo:
             print("Error: --owner and --repo are required for get_all_commits")
             return
-        get_all_commits(args.owner, args.repo, args.author)
+        get_all_commits(args.owner, args.repo, args.branch, args.author)
     else:
         print(f"Unknown command: {args.command}")
 
