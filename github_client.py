@@ -20,14 +20,22 @@ def get_all_repos():
     except Exception as e:
         print(f"Error fetching repositories: {e}")
 
-def get_all_commits(owner, repo_name, branch=None, author_email=None):
+def get_all_commits(owner, repo_name, branch="main", author_email=None):
     """ Fetch and print all commits in the specified repository. """
     try:
-        repo = g.get_repo(f"{owner}/{repo_name}")
-        # Set default branch if None
-        if branch is None:
-            branch = repo.default_branch  # Automatically get the repo's default branch
+        # Ensure the repository exists
+        try:
+            repo = g.get_repo(f"{owner}/{repo_name}")
+        except Exception as e:
+            print(f"Error: Unable to access repository '{owner}/{repo_name}'. Please check if it exists.")
+            return
+
+        # Fetch commits from the specified branch
         commits = repo.get_commits(sha=branch)
+
+        if commits.totalCount == 0:
+            print(f"No commits found in branch '{branch}'.")
+            return
 
         for commit in commits:
             author = commit.commit.author
@@ -38,7 +46,7 @@ def get_all_commits(owner, repo_name, branch=None, author_email=None):
                 print(f"Message: {commit.commit.message}")
                 print(f"Author: {author.name if author else 'Unknown'}")
                 print(f"Email: {author.email if author else 'Unknown'}")
-                print(f"Date: {author.date if author else 'Unknown'}")
+                print(f"Date: {commit.commit.author.date if commit.commit.author else 'Unknown'}")
                 print("-" * 50)
 
     except Exception as e:
@@ -50,7 +58,7 @@ def main():
     
     parser.add_argument("--owner", help="GitHub repository owner")
     parser.add_argument("--repo", help="Repository name")
-    parser.add_argument("--branch", help="Select branch default main")
+    parser.add_argument("--branch", default="main", help="Select branch (default: main)")
     parser.add_argument("--author", help="Filter based on author email")
 
     args = parser.parse_args()
