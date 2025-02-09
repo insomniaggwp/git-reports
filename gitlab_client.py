@@ -4,7 +4,7 @@ import sys
 import argparse
 
 GITLAB_SERVER = os.environ.get('GITLAB_SERVER', 'https://gitlab.com')
-GITLAB_TOKEN = os.environ.get('GITLAB_PERSONAL_TOKEN')
+GITLAB_TOKEN = os.environ.get('GITLAB_TOKEN')
 
 if not GITLAB_TOKEN:
     print("Please set the GITLAB_TOKEN env variable.")
