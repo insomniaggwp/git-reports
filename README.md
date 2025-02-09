@@ -1,6 +1,6 @@
 # Overview
 
-This Python script interacts with the GitHub API to:
+This Python script interacts with the GitHub and GITLAB API to:
 
 Fetch all repositories for the authenticated user.
 
@@ -26,23 +26,29 @@ python-gitlab=v5.6.0 (Gitlab)
 
 Clone this repository:
 
+```
 git clone https://github.com/yourusername/git-reports.git
 cd git-reports
+```
 
 Create and activate a virtual environment:
 
+```
 python -m venv venv
 source venv/bin/activate  # On macOS/Linux
 venv\Scripts\activate  # On Windows
+```
 
 Install dependencies:
 
-pip install -r requirements.txt
+```pip install -r requirements.txt```
 
 Set up your GitHub personal access token as an environment variable:
 
+```
 export GITHUB_TOKEN="your_github_personal_access_token"
 export GITLAB_TOKEN="your_gitlab_personal_access_token"
+```
 
 Note: Ensure the token has permissions to read repositories and commits.
 
@@ -52,12 +58,15 @@ Note: Ensure the token has permissions to read repositories and commits.
 
 1. List All Repositories
 
-python github_client.py get_all_repos
+```python github_client.py get_all_repos```
 
 2. Fetch All Commits from a Repository
 
+```
 python github_client.py get_all_commits --owner <username> --repo <repository_name> --branch <branch_name> --author <email>
+```
 
+```
 --owner (required): GitHub username or organization name.
 
 --repo (required): Repository name.
@@ -65,10 +74,13 @@ python github_client.py get_all_commits --owner <username> --repo <repository_na
 --branch (optional): Branch name (default: main).
 
 --author (optional): Filter commits by author's email.
+```
 
 Example:
 
+```
 python github_client.py get_all_commits --owner octocat --repo Hello-World --branch main --author user@example.com
+```
 
 Error Handling
 
@@ -82,12 +94,17 @@ If no commits are found, the script notifies the user.
 
 1. List All Repositories
 
+```
 python gitlab_client.py get_all_repos
+```
 
 2. Fetch All Commits from a Repository
 
+```
 python gitlab_client.py get_all_commits --owner <namespace> --repo <repository_name> --branch <branch_name> --author <email>
+```
 
+```
 --owner (required): GitLab namespace (username or group name).
 
 --repo (required): Repository name.
@@ -95,10 +112,13 @@ python gitlab_client.py get_all_commits --owner <namespace> --repo <repository_n
 --branch (optional): Branch name (default: main).
 
 --author (optional): Filter commits by author's email.
+```
 
 Example:
 
+```
 python gitlab_client.py get_all_commits --owner mygroup --repo myproject --branch main --author user@example.com
+```
 
 Error Handling
 
