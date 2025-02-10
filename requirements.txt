@@ -1,2 +1,2 @@
 PyGithub==2.5.0
-python-gitlab=v5.6.0
+python-gitlab==v5.6.0
