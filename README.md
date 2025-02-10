@@ -20,7 +20,7 @@ Filter commits by author email (optional).
 
 Python 3.x
 PyGithub package (GitHub API wrapper)
-python-gitlab=v5.6.0 (Gitlab)
+python-gitlab v5.6.0 (Gitlab)
 
 ## Installation
 
@@ -34,7 +34,7 @@ cd git-reports
 Create and activate a virtual environment:
 
 ```
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate  # On macOS/Linux
 venv\Scripts\activate  # On Windows
 ```
@@ -58,12 +58,12 @@ Note: Ensure the token has permissions to read repositories and commits.
 
 1. List All Repositories
 
-```python github_client.py get_all_repos```
+```python3 github_client.py get_all_repos```
 
 2. Fetch All Commits from a Repository
 
 ```
-python github_client.py get_all_commits --owner <username> --repo <repository_name> --branch <branch_name> --author <email>
+python3 github_client.py get_all_commits --owner <username> --repo <repository_name> --branch <branch_name> --author <email>
 ```
 
 ```
@@ -79,7 +79,7 @@ python github_client.py get_all_commits --owner <username> --repo <repository_na
 Example:
 
 ```
-python github_client.py get_all_commits --owner octocat --repo Hello-World --branch main --author user@example.com
+python3 github_client.py get_all_commits --owner octocat --repo Hello-World --branch main --author user@example.com
 ```
 
 Error Handling
@@ -95,13 +95,13 @@ If no commits are found, the script notifies the user.
 1. List All Repositories
 
 ```
-python gitlab_client.py get_all_repos
+python3 gitlab_client.py get_all_repos
 ```
 
 2. Fetch All Commits from a Repository
 
 ```
-python gitlab_client.py get_all_commits --owner <namespace> --repo <repository_name> --branch <branch_name> --author <email>
+python3 gitlab_client.py get_all_commits --owner <namespace> --repo <repository_name> --branch <branch_name> --author <email>
 ```
 
 ```
@@ -117,7 +117,7 @@ python gitlab_client.py get_all_commits --owner <namespace> --repo <repository_n
 Example:
 
 ```
-python gitlab_client.py get_all_commits --owner mygroup --repo myproject --branch main --author user@example.com
+python3 gitlab_client.py get_all_commits --owner mygroup --repo myproject --branch main --author user@example.com
 ```
 
 Error Handling
