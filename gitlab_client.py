@@ -3,6 +3,7 @@ import os
 import sys
 import argparse
 import certifi
+from datetime import datetime
 
 GITLAB_SERVER = os.environ.get('GITLAB_SERVER', 'https://gitlab.com')
 GITLAB_TOKEN = os.environ.get('GITLAB_TOKEN')
@@ -57,6 +58,8 @@ def get_all_commits(repo_name, branch="main", author_email=None, commit_per_page
 
         for commit in commits:
             author_email_commit = commit.author_email
+            commit_date = datetime.strptime(commit.created_at, "%Y-%m-%dT%H:%M:%S.%fZ")
+            formatted_date = commit_date.strftime("%B %d, %Y")
 
             # If author_email is provided, filter commits; otherwise, return all commits
             if author_email is None or author_email_commit == author_email:
@@ -64,7 +67,7 @@ def get_all_commits(repo_name, branch="main", author_email=None, commit_per_page
                 print(f"Message: {commit.message}")
                 print(f"Author: {commit.author_name}")
                 print(f"Email: {commit.author_email}")
-                print(f"Date: {commit.created_at}")
+                print(f"Date: {formatted_date}")
                 print("-" * 50)
 
     except Exception as e:
