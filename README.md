@@ -101,11 +101,10 @@ python3 gitlab_client.py get_all_repos
 2. Fetch All Commits from a Repository
 
 ```
-python3 gitlab_client.py get_all_commits --owner <namespace> --repo <repository_name> --branch <branch_name> --author <email>
+python3 gitlab_client.py get_all_commits --repo <repository_name> --branch <branch_name> --author <email> --commit-per-page <commit_per_page>
 ```
 
 ```
---owner (required): GitLab namespace (username or group name).
 
 --repo (required): Repository name.
 
@@ -117,7 +116,7 @@ python3 gitlab_client.py get_all_commits --owner <namespace> --repo <repository_
 Example:
 
 ```
-python3 gitlab_client.py get_all_commits --owner mygroup --repo myproject --branch main --author user@example.com
+python3 gitlab_client.py get_all_commits --repo smart-pcc-simpul-app --branch develop --author user@example.com --commit-per-page=100
 ```
 
 Error Handling
