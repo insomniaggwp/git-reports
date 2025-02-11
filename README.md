@@ -118,7 +118,7 @@ python3 gitlab_client.py get_all_commits --repo <repository_name> --branch <bran
 Example:
 
 ```
-python3 gitlab_client.py get_all_commits --repo smart-pcc-simpul-app --branch develop --author user@example.com --commit-per-page=100
+python3 gitlab_client.py get_all_commits --repo cool-app --branch develop --author user@example.com --commit-per-page=100
 ```
 
 Error Handling
