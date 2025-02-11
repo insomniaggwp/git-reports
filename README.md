@@ -111,6 +111,8 @@ python3 gitlab_client.py get_all_commits --repo <repository_name> --branch <bran
 --branch (optional): Branch name (default: main).
 
 --author (optional): Filter commits by author's email.
+
+--commit-per-page: Amount of commit per page that want to show, default 20 commit
 ```
 
 Example:
